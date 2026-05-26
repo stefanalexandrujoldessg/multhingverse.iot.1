@@ -232,6 +232,29 @@ callbackSinginRequest(response, status,error)
                 </Button>
                 </div>
 
+                <hr/>
+
+                <div className="loginPageLoginFormButtonsDiv">
+                <Button
+                    variant="outline-danger"
+                    className="loginFormButton"
+                    onClick={() => {
+                        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+                        const redirectUri = encodeURIComponent(window.location.origin + "/oauth2/callback");
+                        const scope = encodeURIComponent("openid email profile");
+                        window.location.href =
+                            "https://accounts.google.com/o/oauth2/v2/auth" +
+                            "?client_id=" + clientId +
+                            "&redirect_uri=" + redirectUri +
+                            "&response_type=code" +
+                            "&scope=" + scope +
+                            "&access_type=online";
+                    }}
+                >
+                    Continue with Google
+                </Button>
+                </div>
+
                 </div>
                 
                 {this.state.redirect && <Navigate to = {this.state.redirectTo}/>}

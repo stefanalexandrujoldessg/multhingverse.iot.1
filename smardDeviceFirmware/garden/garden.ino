@@ -64,7 +64,7 @@ boolean waterPumpValue = false;
 
  
       void printCredentials();
-      void persistCreadentials(String credentialsJSON);
+      void persistCredentials(String credentialsJSON);
       
     //  void ICACHE_RAM_ATTR onTime() 
         void onTime()
@@ -96,7 +96,7 @@ boolean waterPumpValue = false;
             
       void initializeTimer()
       {
-            cli();
+            noInterrupts();
             //Initialize Ticker every 0.5s
             timer1_disable();
           
@@ -114,8 +114,8 @@ boolean waterPumpValue = false;
             */
             
             // Arm the Timer for our 0.5s Interval
-            timer1_write(2500000); // 2500000 / 5 ticks per us from TIM_DIV16 == 500,000 us interval 
-            sei();
+            timer1_write(2500000); // 2500000 / 5 ticks per us from TIM_DIV16 == 500,000 us interval
+            interrupts();
     }
     void handleRoot() 
     {
@@ -126,7 +126,7 @@ boolean waterPumpValue = false;
             if(configurationDeserializedValidator==true)
             {
                 httpServer.send(200, "text/html",     
-                      "<html> <style> body>*:{border-radius:1rem; font-size:2rem;} body{font-size:2rem; display:flex; flex-direction:column; justify-content:flex-start; align-content: center; align-items:center;} </style>   <script>         function  callback(response, status, error){  console.log(response, status, error);  alert(status+\" \"+ (response!==null && response!==undefined)?response.toString():\"\" + \" \"+ (error!==null && error!==undefined)?error.toString():\"\");}function postCredentials(){    let request = new Request(\"/postCredentials\" , {        method: 'POST',        headers : {             'Content-Type': 'application/json',        },        body: JSON.stringify({password: document.getElementById('password').value, ssid: document.getElementById(\"ssid\").value}),    });         performRequestInternal(request)}function postPair(){    let request = new Request(\"/pairDevice\" , {        method: 'POST',        headers : {             'Content-Type': 'application/json',        },        body: JSON.stringify({username: document.getElementById('username').value, password: document.getElementById('password').value, ssid: document.getElementById(\"ssid\").value}),    });         performRequestInternal(request)}function getIndex(){    let request = new Request(\"/\" , {        method: 'GET',        });         performRequestInternal(request)}  function performRequestInternal(request){               fetch(request)                .then(            function(response) {                if (response.ok) {  response.text().then((text)=>callback(text, response.status,null));               }                else {     response.text().then((text)=>callback(null, response.status,text));            }            })        .catch(function (err) {                       callback(null, 1, err)        });}    </script>    <body>            <label for=\"username\">username</label>            <input type=\"text\" id = \"username\"/>            <label for=\"password\">password</label>            <input type=\"text\" id = \"password\"/>            <label for=\"ssid\">ssid</label>            <input type=\"text\" id = \"ssid\"/>                         <button onclick=\"postCredentials()\">postCredentials</button>            <button onclick=\"getIndex()\">getIndex</button>            <button onclick=\"postPair()\">postCredentials</button>                 </body></html>"
+                      "<html> <style> body>*:{border-radius:1rem; font-size:2rem;} body{font-size:2rem; display:flex; flex-direction:column; justify-content:flex-start; align-content: center; align-items:center;} </style>   <script>         function  callback(response, status, error){  console.log(response, status, error);  alert(status+\" \"+ (response!==null && response!==undefined)?response.toString():\"\" + \" \"+ (error!==null && error!==undefined)?error.toString():\"\");}function postCredentials(){    let request = new Request(\"/postCredentials\" , {        method: 'POST',        headers : {             'Content-Type': 'application/json',        },        body: JSON.stringify({password: document.getElementById('password').value, ssid: document.getElementById(\"ssid\").value}),    });         performRequestInternal(request)}function postPair(){    let request = new Request(\"/pairDevice\" , {        method: 'POST',        headers : {             'Content-Type': 'application/json',        },        body: JSON.stringify({username: document.getElementById('username').value, password: document.getElementById('password').value, ssid: document.getElementById(\"ssid\").value}),    });         performRequestInternal(request)}function getIndex(){    let request = new Request(\"/\" , {        method: 'GET',        });         performRequestInternal(request)}  function performRequestInternal(request){               fetch(request)                .then(            function(response) {                if (response.ok) {  response.text().then((text)=>callback(text, response.status,null));               }                else {     response.text().then((text)=>callback(null, response.status,text));            }            })        .catch(function (err) {                       callback(null, 1, err)        });}    </script>    <body>            <label for=\"username\">username</label>            <input type=\"text\" id = \"username\"/>            <label for=\"password\">password</label>            <input type=\"text\" id = \"password\"/>            <label for=\"ssid\">ssid</label>            <input type=\"text\" id = \"ssid\"/>                         <button onclick=\"postCredentials()\">postCredentials</button>            <button onclick=\"getIndex()\">getIndex</button>            <button onclick=\"postPair()\">pair with cloud</button>                 </body></html>"
                 );    
             }
             else
@@ -315,7 +315,7 @@ boolean waterPumpValue = false;
         HTTPClient http;
     
         Serial.print("[HTTP] begin...\n");
-        if (http.begin(client, "http://multhingverse.com/api/um/crud/device/insertWithUsernameByConfiguration"))
+        if (http.begin(client, "http://iot.multhingverse.com/api/um/crud/device/insertWithUsernameByConfiguration")) 
         {   
             http.addHeader("Content-Type", "application/json");
             String body = getInsertionBodyJSONForInsertion(username);
@@ -666,7 +666,10 @@ void    synchGPIO()
             case WStype_BIN:
             {
                 Serial.printf("[WSc] get binary length: %u\n", length);
-                hexdump(payload, length);
+                for (size_t i = 0; i < length; i++) {
+                    Serial.printf("%02X ", payload[i]);
+                }
+                Serial.println();
                 break;
             }
             
@@ -689,7 +692,7 @@ void    synchGPIO()
     void initializeWebSocketClient()
     {
         Serial.println("WS binitialize");
-        webSocketClient.begin("multhingverse.com", 80, "/api/dm/websocket");
+        webSocketClient.begin("iot.multhingverse.com", 80, "/api/dm/websocket");
         webSocketClient.onEvent(webSocketEvent);
         webSocketClient.setReconnectInterval(1000);
     }
@@ -705,11 +708,11 @@ void    synchGPIO()
 
   bool initializeWiFiStationPair(  )
   {
-             if(WIFI_SSID.length()>0 & WIFI_PASS.length()>0 )
+             if(WIFI_SSID.length()>0 && WIFI_PASS.length()>0 )
             {
                  WiFi.begin(WIFI_SSID, WIFI_PASS);
-               
-                // Connecting to WiFi... 
+
+                // Connecting to WiFi...
                 Serial.print("Connecting to ");
                 Serial.print(WIFI_SSID);
                 int numTry = 0;
@@ -741,11 +744,11 @@ void    synchGPIO()
   
   void initializeWiFiStation(  )
   {
-             if(WIFI_SSID.length()>0 & WIFI_PASS.length()>0 )
+             if(WIFI_SSID.length()>0 && WIFI_PASS.length()>0 )
             {
                  WiFi.begin(WIFI_SSID, WIFI_PASS);
-               
-                // Connecting to WiFi... 
+
+                // Connecting to WiFi...
                 Serial.print("Connecting to ");
                 Serial.print(WIFI_SSID);
                 int numTry = 0;

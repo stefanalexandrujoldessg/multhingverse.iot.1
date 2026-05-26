@@ -5,7 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.JsonObject;
 import com.liciot.usermanagementms.dto.BasicAuthenticationBody;
+import com.liciot.usermanagementms.dto.GoogleOAuth2CallbackBody;
+import com.liciot.usermanagementms.dto.GoogleUserInfo;
+import com.liciot.usermanagementms.entity.HumanUser;
 import com.liciot.usermanagementms.entity.Session;
+import com.liciot.usermanagementms.service.HumanUserService;
+import com.liciot.usermanagementms.service.security.GoogleOAuth2Service;
+import com.liciot.usermanagementms.service.security.JwtTokenUtil;
 import com.liciot.usermanagementms.service.security.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +27,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.time.chrono.JapaneseChronology;
 import java.util.Objects;
-import com.liciot.usermanagementms.service.security.JwtTokenUtil;
 
 @RestController
 @RequestMapping("/security")
@@ -33,6 +38,10 @@ AuthenticationManager authenticationManager;
 JwtTokenUtil jwtTokenUtil;
 @Autowired
     SessionService sessionService;
+@Autowired
+    GoogleOAuth2Service googleOAuth2Service;
+@Autowired
+    HumanUserService humanUserService;
     @GetMapping("/validate")
     public void  validate( ) throws Exception {
 
@@ -75,6 +84,18 @@ JwtTokenUtil jwtTokenUtil;
             throw new Exception("Not good token");
         }
     }
+    @PostMapping("/oauth2/google")
+    public JsonNode googleOAuth2(@RequestBody GoogleOAuth2CallbackBody body) throws Exception {
+        GoogleUserInfo userInfo = googleOAuth2Service.exchangeCodeForUserInfo(body.getCode(), body.getRedirectUri());
+        HumanUser humanUser = humanUserService.findOrCreateGoogleUser(userInfo.getEmail(), userInfo.getName());
+        Session session = sessionService.createSession(humanUser.getUsername());
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode response = objectMapper.createObjectNode();
+        response.put("token", jwtTokenUtil.generateToken(session.getToken()));
+        response.put("id", session.getUser().getId().toString());
+        return response;
+    }
+
     private Authentication authenticateWithSpringGivenBean(String username, String password) throws Exception {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);

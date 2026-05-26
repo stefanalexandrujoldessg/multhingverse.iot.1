@@ -28,6 +28,8 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
+      args:
+        REACT_APP_GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
     networks:
       - multhingverse
     restart: unless-stopped
@@ -53,6 +55,8 @@ services:
       PORT: "9090"
       JWT_SECRET: "${JWT_SECRET:-changeme_jwt_secret_replace_in_prod}"
       FILE_UPLOAD_DIR: "/app/uploads/"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET}"
     volumes:
       - uploads_um:/app/uploads
     depends_on:
