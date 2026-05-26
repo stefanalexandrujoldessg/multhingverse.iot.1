@@ -1,0 +1,107 @@
+/*.boolParameterButton{
+    padding: 0.1rem;
+    border-radius: 1rem;
+    border:none;
+    background-color: rgb(146, 100, 231);
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    align-content: center;
+
+    min-height: 1.5rem;
+    padding: 0 0.5rem  0 0.5rem;
+}
+
+.true{
+ 
+    background-color: rgb(53, 253, 103);
+}
+.true:hover{
+ 
+    background-color: rgb(32, 143, 60);
+}
+
+.false{
+ 
+    background-color: rgb(253, 53, 53);
+}
+.false:hover{
+ 
+    background-color: rgb(170, 26, 26);
+}
+
+.released.left{
+    
+    background: linear-gradient(90deg, rgb(200,200,200), rgb(100,100,100));
+
+}
+.released.right{
+    
+    background: linear-gradient(90deg,  rgb(100,100,100),rgb(200,200,200));
+
+}
+
+.pressed.left{
+    
+    background: linear-gradient(90deg, rgb(100,100,100), rgb(100,100,100));
+
+}
+.pressed.right{
+    
+    background: linear-gradient(90deg,  rgb(100,100,100),rgb(100,100,100));
+
+}
+ 
+.left{
+    margin-right: 0px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+.right{
+    margin-left: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.boolParameterSymbol.line {
+    border-style: solid;
+    border-color: rgb(169, 255, 56);
+    border-width: 3px 0 0 0 ;
+    display: inline-block;
+    padding: 0 0.3rem 0 0.3rem;
+    border-radius: 0;
+  }
+  .boolParameterSymbol.circle {
+    border-style: solid;
+    border-color: rgb(245, 33, 33);
+    border-width: 3px 3px 3px 3px;
+    display: inline-block;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+  }
+ */
+
+ .inputRange
+ {
+     padding: 0;
+ }
+ .inputRangeFormGroup
+ {
+     min-width: 3rem;
+ }
+
+ .rangeLimitDiv{
+    display: inline-block;
+white-space: nowrap;
+    word-wrap:none;
+    text-align: center;
+
+    
+    overflow: scroll;
+
+    padding: 0.2rem;
+    min-width: 2rem;
+}

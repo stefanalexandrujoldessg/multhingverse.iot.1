@@ -1,0 +1,222 @@
+.deviceFocusPanelMainDiv{
+  
+    width: 98%;
+    /*margin:; daca parintele are center antci e ok*/
+    margin:1rem 0 0 0 ;
+    padding: 1rem;
+     
+    background: rgba(255,255,255,0.5);
+
+    min-height: 50vh;
+    border-radius: 1.5rem;
+
+    --box-shadow-style: 0 0 0.9rem 0.1rem rgba(0,0,0,0.2);
+    
+    box-shadow: var(--box-shadow-style);
+    
+    
+}
+.deviceFocusPanelMainDiv
+{
+  
+  
+    
+     
+    
+    
+    display: flex;
+    flex-direction: column;
+
+    /*
+    justify-content: center;
+    justify-items: center;
+    axa este oy deci jusify content pune elemmentele ficarei (linii flex) deci coloane de sus in jos
+    align content pune lineile flex deci coloanele pe axa cross ox asta in caz ac se face wrap si vor fi mai milte coloane de elemente
+    align intems pine elementele in acdrul liniei flex deci a coloane pe linia cross deci pe ox de la stanga la dreapta eu asta reau 
+    align-content: center;
+    */
+    justify-content: flex-start;
+    align-content: space-around;
+    align-items: center;
+
+
+
+     
+
+        
+
+    
+}
+
+
+.deviceFocusPanelHeaderMainDiv
+{
+    min-height: 1.8rem;
+    max-height: 1.8rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+
+
+}
+
+/* before deviceFocusPanelHeaderNameDiv order matters here*/
+.deviceFocusPanelHeaderNameDiv::-webkit-scrollbar {
+    max-width: 0;
+    max-height: 0;
+}
+
+.deviceFocusPanelHeaderNameDiv::-webkit-scrollbar-track {
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.deviceFocusPanelHeaderNameDiv::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.deviceFocusPanelBodyMainDiv::-webkit-scrollbar {
+    max-width: 0;
+    max-height: 0;
+}
+
+.deviceFocusPanelBodyMainDiv::-webkit-scrollbar-track {
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.deviceFocusPanelBodyMainDiv::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.deviceFocusPanelHeaderNameDiv{
+
+    width: 80%;
+    min-height: inherit;
+    max-height: inherit;
+    margin: 0;
+    padding: 0.2rem;
+
+    border-radius: inherit;
+    border-top-right-radius: 0;
+
+    background: transparent;/*linear-gradient(10deg ,rgba(0,0,0,0.2), rgba(50,50,50,0) 50%);*/
+
+    overflow: scroll;
+
+}
+
+
+
+.deviceFocusPanelHeaderOnlineDiv{
+    width: 20%;
+    min-height: inherit;
+    max-height: inherit;
+    margin: 0;
+    padding: 0;
+
+    border-radius: inherit;
+    border-top-left-radius: 0;
+
+    display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+
+     justify-content: flex-end;
+     align-items: center;
+     align-content: center;
+
+   
+}
+.arrow {
+    border-style: solid;
+    border-color: rgb(0,255,0);
+    border-width:3px 3px 0 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .line {
+    border-style: solid;
+    border-color: red;
+    border-width: 0 0 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .circle {
+    border-style: solid;
+    border-color: rgb(75, 75, 248);
+    border-width: 3px 3px 3px 3px;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 0.5rem;
+  }
+  /*
+  .right {
+    transform: rotateZ(-45deg);
+    -webkit-transform: rotateZ(-45deg);
+     
+  }
+  */
+/*
+.deviceFocusPanelHeaderOnlineDiv[online=true]{
+    background:  linear-gradient(217deg, rgba( 0,255,0,.8), rgba(255,0,0,0) 50%);
+
+}
+.deviceFocusPanelHeaderOnlineDiv[online=false]{
+    background:  linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 50%);
+
+}
+*/
+.deviceFocusPanelBodyMainDiv{
+    width :100%;
+    margin:0;
+    padding:0;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: space-evenly;
+
+ 
+    align-items: center;
+    align-content:flex-start;
+
+    overflow: scroll; 
+     
+      
+   
+   
+ 
+}
+ 
+ 
+ 
+
+ 
+.separatorBorderLineDiv{
+    width: 90%;
+    min-width: 90%;
+    max-height: 0;
+    border-width: 2px 0 0  0 ;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1);
+    display: inline-block;
+    border-radius: 1rem;
+    margin: 0.2rem 0 0.2rem ;
+    
+    } 

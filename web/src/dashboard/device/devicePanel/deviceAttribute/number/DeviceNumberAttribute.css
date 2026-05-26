@@ -1,0 +1,66 @@
+.numberAttributeMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+  border:none;
+  box-shadow: 0 0 0.05rem 0.01rem white;  
+
+
+    border-radius: 0.5rem;
+}
+
+
+.numberAttributeNameDiv::-webkit-scrollbar , .numberAttributeValueDiv::-webkit-scrollbar , .numberAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+}
+
+.numberAttributeNameDiv::-webkit-scrollbar-track,  .numberAttributeValueDiv::-webkit-scrollbar , .numberAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.numberAttributeNameDiv::-webkit-scrollbar-thumb , .numberAttributeValueDiv::-webkit-scrollbar , .numberAttributeDisplayValueDiv::-webkit-scrollbar{
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.numberAttributeNameDiv
+{
+margin:0;
+padding: 0.25rem 0 0.25rem 0;
+overflow: scroll;
+ 
+
+}
+
+.numberAttributeValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+    --numberAttributeValueDiv-padding: 0 ;
+    padding: var(--numberAttributeValueDiv-padding);
+}
+.numberAttributeDisplayValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+}

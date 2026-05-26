@@ -1,0 +1,368 @@
+.devicePanelMainDiv
+{
+    min-width: 30%;
+    max-width: 30%;
+    /*max-width: 30%;*/
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 0;
+     
+    border-radius: 0.5rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 1.5rem;;
+    --box-shadow-style : 0.05rem 0.15rem 0.5rem 0.01rem black;
+    box-shadow: var(--box-shadow-style);
+   /* box-shadow: none;*/
+
+
+    display: flex;
+    flex-direction: column;
+
+    /*
+    justify-content: center;
+    justify-items: center;
+    axa este oy deci jusify content pune elemmentele ficarei (linii flex) deci coloane de sus in jos
+    align content pune lineile flex deci coloanele pe axa cross ox asta in caz ac se face wrap si vor fi mai milte coloane de elemente
+    align intems pine elementele in acdrul liniei flex deci a coloane pe linia cross deci pe ox de la stanga la dreapta eu asta reau 
+    align-content: center;
+    */
+    justify-content: flex-start;
+    align-content: space-around;
+    align-items: center;
+
+
+
+    border: 4px solid transparent;
+    /*border-width: 5px 3px 3px 5px;*/
+
+    /*min-height: 5rem;*/
+    --background-color: linear-gradient(rgb(235,230,235), rgb(235,230,235));
+    --border-main-color: rgb();
+        --border-main-color: rgb(158, 158, 240);
+        --border-secondary-color: rgb(32, 32, 223);
+
+    background: var(--background-color) padding-box, linear-gradient(
+        90deg
+        ,var(--border-main-color),var(--border-secondary-color)) 0% 100%/60%  50% no-repeat border-box,linear-gradient(
+        -90deg
+        ,var(--border-main-color),var(--border-secondary-color)  ) 100% 0%/20% 40% no-repeat border-box;;
+
+        
+
+    
+}
+
+.devicePanelMainDiv:hover{
+    transform : scale(1.05);
+    transition: 0s;
+}
+.devicePanelMainDiv{
+    transition: 0s;
+}
+.devicePanelHeaderMainDiv
+{
+    min-height: 1.8rem;
+    max-height: 1.8rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+
+
+}
+
+/* before devicePanelHeaderNameDiv order matters here*/
+.devicePanelHeaderNameDiv::-webkit-scrollbar {
+    max-width: 0;
+    max-height: 0;
+}
+
+.devicePanelHeaderNameDiv::-webkit-scrollbar-track {
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.devicePanelHeaderNameDiv::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.devicePanelBodyMainDiv::-webkit-scrollbar {
+    max-width: 0;
+    max-height: 0;
+}
+
+.devicePanelBodyMainDiv::-webkit-scrollbar-track {
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.devicePanelBodyMainDiv::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.devicePanelHeaderNameDiv{
+
+    width: 80%;
+    min-height: inherit;
+    max-height: inherit;
+    margin: 0;
+    padding: 0.2rem;
+
+    border-radius: inherit;
+    border-top-right-radius: 0;
+
+    background: transparent;/*linear-gradient(10deg ,rgba(0,0,0,0.2), rgba(50,50,50,0) 50%);*/
+
+    overflow: scroll;
+
+}
+
+
+
+.devicePanelHeaderOnlineDiv{
+    width: 20%;
+    min-height: inherit;
+    max-height: inherit;
+    margin: 0;
+    padding: 0;
+
+    border-radius: inherit;
+    border-top-left-radius: 0;
+
+    display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+
+     justify-content: center;
+     align-items: center;
+     align-content: center;
+
+   
+}
+.arrow {
+    border-style: solid;
+    border-color: rgb(0,255,0);
+    border-width:3px 3px 0 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .arrow:hover {
+    
+    border-width:5px 5px 0 0;
+    
+    padding: 5px;
+  }
+  .line {
+    border-style: solid;
+    border-color: red;
+    border-width: 0 0 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .circle {
+    border-style: solid;
+    border-color: rgb(75, 75, 248);
+    border-width: 3px 3px 3px 3px;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 0.5rem;
+  }
+  /*
+  .right {
+    transform: rotateZ(-45deg);
+    -webkit-transform: rotateZ(-45deg);
+     
+  }
+  */
+/*
+.devicePanelHeaderOnlineDiv[online=true]{
+    background:  linear-gradient(217deg, rgba( 0,255,0,.8), rgba(255,0,0,0) 50%);
+
+}
+.devicePanelHeaderOnlineDiv[online=false]{
+    background:  linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 50%);
+
+}
+*/
+.devicePanelBodyMainDiv{
+    width :100%;
+    margin:0;
+    padding:0;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: space-evenly;
+
+ 
+    align-items: center;
+    align-content:flex-start;
+
+    overflow: scroll; 
+     
+     min-height: 20vh; 
+     max-height: 30vh; 
+   
+   
+ 
+}
+@media screen and  (min-width:1449px)
+
+{
+
+    .devicePanelMainDiv
+    {
+        min-width: 18%;
+        max-width: 18%;
+        /*max-width: 30%;*/
+        
+        
+         
+    }
+ 
+}
+@media screen and  (max-width:1448px)
+
+{
+
+    .devicePanelMainDiv
+    {
+        min-width: 23%;
+        max-width: 23%;
+        /*max-width: 30%;*/
+        
+        
+         
+    }
+}
+@media screen and  (max-width:1024px)
+
+{
+
+    .devicePanelMainDiv
+    {
+        min-width: 30%;
+        max-width: 30%;
+        /*max-width: 30%;*/
+        
+        
+         
+    }
+}
+@media screen and  (max-width:840px)
+
+{
+
+    .devicePanelMainDiv
+    {
+        min-width: 45%;
+        max-width: 45%;
+        /*max-width: 30%;*/
+        
+        
+         
+    }
+}
+@media screen and  (max-width:640px)
+    {
+
+        .devicePanelMainDiv
+        {
+            min-width: 90%;
+            max-width: 90%;
+            /*max-width: 30%;*/
+            
+            
+             
+        }
+}
+
+
+@media only screen and (min-height:801px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 20vh; 
+       max-height: 20vh; 
+    }
+}
+@media only screen and (max-height:800px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 20vh; 
+       max-height: 20vh; 
+    }
+}
+@media only screen and (max-height:700px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 25vh; 
+       max-height: 25vh; 
+    }
+}
+@media only screen and (max-height:600px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 28vh; 
+       max-height: 28vh; 
+    }
+}
+@media only screen and (max-height:500px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 36vh; 
+       max-height: 36vh; 
+    }
+}
+@media only screen and (max-height:400px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 45vh; 
+       max-height: 45vh; 
+    }
+}
+@media only screen and (max-height:300px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 60vh; 
+       max-height: 60vh; 
+    }
+}
+@media only screen and (max-height:200px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 80vh; 
+       max-height: 80vh; 
+    }
+}
+@media only screen and (max-height:100px)
+{
+    .devicePanelBodyMainDiv{   
+        min-height: 90vh; 
+       max-height: 90vh; 
+    }
+}
+.separatorBorderLineDiv{
+    width: 90%;
+    min-width: 90%;
+    max-height: 0;
+    border-width: 2px 0 0  0 ;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1);
+    display: inline-block;
+    border-radius: 1rem;
+    margin: 0.2rem 0 0.5rem ;
+    
+    } 

@@ -1,0 +1,492 @@
+<html>
+    
+ 
+
+    <script>
+         
+
+         var myWebSocket;
+function sendMessage()
+{
+    var message ={
+        type:"authorization",
+        authorization:"Id  "+document.getElementById("deviceId").value   }
+        //document.getElementById("message").value;
+    myWebSocket.send(JSON.stringify(message));
+}
+ 
+ 
+var attr1Value = true;
+ function setAttr1Value(value)
+ {
+     attr1Value = value;
+        sendAttribute1();
+ }
+function sendAttribute1()
+{
+     
+    var message ={
+        type:"deviceState",
+        deviceState:{
+            id: document.getElementById("deviceId").value,
+            state:{
+                attr1:{
+                    value:{
+                        value: attr1Value,
+                        displayValue: attr1Value?"on":"off"
+                         
+                    }
+                }
+            }
+        }
+    };
+    
+    myWebSocket.send(JSON.stringify(message));
+}
+  
+function messageHandler(message)
+{
+    let obj = JSON.parse(message);
+     
+    if(obj.type ==="deviceCapability")
+    {   
+         
+        let keys = Object.keys(obj.deviceCapability.capability);
+        for(let key in keys)
+        {
+          
+            if(keys[key].toString() === "cap1")
+            {   
+                let value = obj.deviceCapability.capability[keys[key]].parameters.param1.value.value;
+                if( (typeof value).toString().toLowerCase() === "boolean")
+                {
+                    setAttr1Value(value);
+                //sendAttribute1()
+            }
+ 
+                
+            
+            
+            
+        }
+    }
+}
+}
+function wsConnect()
+{
+
+   // wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self
+      myWebSocket = new MyWebSocket("192.168.1.115:9092", "/websocket",false,messageHandler);
+        myWebSocket.open();
+        myWebSocket.initializeHeartbeat();
+
+}
+
+           class MyWebSocket
+{ 
+    constructor(host , path, secure, messageHandler)
+    {
+        this.host = host;
+        this.path = path;
+        this.secure = secure;
+        this.webSocket =  undefined;
+        this.messageHandler = messageHandler;
+        this.onClose = this.onClose.bind(this);
+        this.onMessage = this.onMessage.bind(this);
+        this.onOpen = this.onOpen.bind(this);
+        this.onError = this.onError.bind(this);
+        this.initializeHeartbeat = this.initializeHeartbeat.bind(this);
+        this.heartBeat = this.heartBeat.bind(this);
+        this.open = this.open.bind(this);
+
+    }
+    //ai griza la cele planificwatre ca se pot crea mai multe web socketuri spre care pierdem referinta
+    open()
+    {
+        //specialconsole.log("[MyWebSocket] open function");
+        
+        if(this.webSocket === undefined || this.webSocket.readyState === WebSocket.CLOSED)
+        {
+        if(this.webSocket!==undefined)
+        {
+            this.webSocket.close();
+        }
+        //specialconsole.log("Will try to open connection");
+        let uri = "";
+        if(this.secure)
+        {
+            uri+="wss://";
+        }
+        else{           
+             uri+="ws://";
+        }
+        uri+=this.host;
+        uri+=this.path;
+        uri+="/";
+        
+        //specialconsole.log("[MyWebSocket] wil open: "+ uri)
+        this.webSocket = new WebSocket(uri);
+        this.webSocket.onopen = this.onOpen;
+        this.webSocket.onclose = this.onClose;
+        this.webSocket.onerror = this.onError;
+        this.webSocket.onmessage = this.onMessage;
+        //specialconsole.log("[MyWebSocket] web socket opened: "+ this.webSocket);
+        return this;
+    
+        }
+        return this;
+
+    }
+    close()
+    {
+        clearInterval(this.interval); //daca nu faci asta aici ramane intervalul setat deci parte din obiedtul asta va raman in viata si se va executa functia dar evident ca this.ceveDinObjAsta va da undefined in heartbit
+        this.webSocket.close();
+    }
+    onOpen()
+    {
+        //specialconsole.log("Ws connected to: "+ this.webSocket);
+        this.webSocket.send("forceUpdate");
+
+    }
+    onClose()//cateodata se apeleaza fubnctia asta can esueaza deschiderea conexiunii cateodata nu deci incearca onError
+    {
+        //specialconsole.log("[MyWebSocket] socket closed");
+        setTimeout(this.open,1000);
+        
+        
+    }
+    onError()
+    {
+        //specialconsole.log("[MyWebSocket]: onError");
+         
+        setTimeout(this.open,1000);
+    }
+    onMessage(event)
+    {
+        //specialconsole.log("[MyWebSocket] message received: "+ event.data);
+        if(this.messageHandler!==undefined)
+        {
+            this.messageHandler(event.data);
+        }
+        
+    }
+    send(data)
+    {
+        if( this.webSocket!== undefined && this.webSocket.readyState === WebSocket.OPEN)
+        {
+            this.webSocket.send(data);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    initializeHeartbeat()
+    {
+        //specialconsole.log("Initializing heart beat");
+
+        this.interval =setInterval(this.heartBeat, 5000);
+    }
+    heartBeat()
+    {    //specialconsole.log("1 Sending heart beat");
+        if(this.webSocket !== undefined && this.webSocket.readyState === WebSocket.OPEN)
+        {        //specialconsole.log("2 Sending heart beat");
+
+            this.webSocket.send('h');
+        }
+        else{
+            //repopen connection this is like a sskeduled periodicaly chack method that checks if socket is close, if true then it reopens it
+        }
+        
+        
+    }
+
+}
+
+
+
+
+
+
+function  callback(response, status, error)
+{
+    //specialconsole.log(respose, status, error);
+}
+
+ 
+ 
+function performRequestAddDevice()
+{
+    let request = new Request("http://multhingverse.com:9090/crud/device/insertWithUsernameByConfiguration" , {
+        method: 'POST',
+        headers : {
+             'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({adminUserUsername: document.getElementById('username').value, configurationJSON: 
+    
+    
+    JSON.stringify(
+        {
+            id: document.getElementById('deviceId').value,
+            name: "Sopron control box",
+            state:  
+            {
+               
+               attr1:  
+               {
+                        name:"Bright lights",
+                        metaType:"JSON",
+                        type:"boolean",
+                        dashboardDisplay:true,
+                        
+                        value:
+                        {
+
+                            value:true,
+                            displayValue:"on"
+                        }
+                },
+                attr2:  
+                {
+                        name:"Golden lights",
+                        metaType:"JSON",
+                        type:"boolean",
+                        dashboardDisplay:true,
+                        
+                        value:
+                        {
+
+                            value:true,
+                            displayValue:"on"
+                        }
+                },
+                attr3:  
+                {
+                        name:"Flames",
+                        metaType:"JSON",
+                        type:"boolean",
+                        dashboardDisplay:true,
+                        
+                        value:
+                        {
+
+                            value:true,
+                            displayValue:"on"
+                        }
+                },
+                attr4:  
+                {
+                        name:"Disco mode",
+                        metaType:"JSON",
+                        type:"boolean",
+                        dashboardDisplay:true,
+                        
+                        value:
+                        {
+
+                            value:true,
+                            displayValue:"running"
+                        }
+                },
+                 
+ 
+           
+            },
+            capabilities:{
+                cap1:{
+                    dashboardDisplay:true,
+                    name:"Set bright lights",
+                    parameters:{
+                        param1:{
+                            name:"",
+                            metaType:"JSON",
+                            type:"boolean",
+                            corelationAttribute: "attr1"
+                        }
+                    }
+                },
+                cap2:{
+                    dashboardDisplay:true,
+                    name:"Set golden lights",
+                    parameters:{
+                        param1:{
+                            name:"",
+                            metaType:"JSON",
+                            type:"boolean",
+                            corelationAttribute: "attr2"
+                        }
+                    }
+                },
+                cap3:{
+                    dashboardDisplay:true,
+                    name:"Set fire",
+                    parameters:{
+                        param1:{
+                            name:"",
+                            metaType:"JSON",
+                            type:"boolean",
+                            corelationAttribute: "attr3"
+                        }
+                    }
+                },
+                cap4:{
+                    dashboardDisplay:true,
+                    name:"Disco vibe",
+                    parameters:{
+                        param1:{
+                            name:"",
+                            metaType:"JSON",
+                            type:"boolean",
+                            corelationAttribute: "attr4"
+                        }
+                    }
+                },
+                cap5:{
+                    dashboardDisplay:true,
+                    name:"Set all lights",
+                    parameters:{
+                        param1:{
+                            name:"",
+                            metaType:"JSON",
+                            type:"boolean",
+                            
+                        }
+                    }
+                },
+                cap6:{
+                    dashboardDisplay:true,
+                    name:"All off",
+                     
+                },
+
+
+           
+
+
+                 
+
+            
+            }
+            
+        }
+           
+           
+            )
+    
+    
+    
+    })
+    });
+    //specialconsole.log(request.url);
+    performRequestInternal(request)
+}
+
+function performRequestAddAccessUsers()
+{
+    let request = new Request("http://127.0.0.1:9090/crud/device/addAccessUsers" , {
+        method: 'POST',
+        headers : {
+             'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({deviceId: document.getElementById('deviceId').value, accessUsersId:[document.getElementById('userId').value] })
+    });
+    //specialconsole.log(request.url);
+    performRequestInternal(request)
+}
+function performRequestRemoveAccessUsers()
+{
+    let request = new Request("http://127.0.0.1:9090/crud/device/removeAccessUsers" , {
+        method: 'POST',
+        headers : {
+             'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({deviceId: document.getElementById('deviceId').value, accessUsersId:["f5706f81-08d1-4931-8f7c-424e59fd4fcd", "6282eefe-3fe3-4011-a205-50fbdec8a14a","6285eefe-3fe3-4011-a205-50fbdec8a14a"] })
+    });
+    //specialconsole.log(request.url);
+    performRequestInternal(request)
+}
+function performRequestAuthenticate()
+{
+    let request = new Request("http://127.0.0.1:9090/security/authenticate" , {
+        method: 'POST',
+        headers : {
+             'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({username:document.getElementById('username').value, password:document.getElementById('password').value })
+    });
+    //specialconsole.log(request.url);
+    performRequestInternal(request)
+}
+ 
+
+  function performRequestInternal(request){
+     
+     //specialconsole.log("&***" , request);
+    fetch(request)
+        
+        .then(
+            function(response) {
+                if (response.ok) {
+
+
+                    
+                
+                     response.headers.forEach((val,key)=>{
+                         //specialconsole.log("*****"+key+" "+val);
+                        });
+                     for (var pair of response.headers.entries()) {
+                        //specialconsole.log(pair[0]+ ': '+ pair[1]);
+                     }
+
+                    response.json().then(json => callback(json, response.status,null));
+                }
+                else {
+                    const contentType = response.headers.get("content-type");
+
+                    if(response!==null&& contentType && contentType.indexOf("application/json") !== -1)
+                    {
+                        //specialconsole.log("Raspuns " + JSON.stringify(response));
+                        response.json().then(err => callback(null, response.status,  err));
+                    }
+                }
+            })
+        .catch(function (err) {
+            //catch any other unexpected error, and set cusltom code for error = 1
+            callback(null, 1, err)
+        });
+}
+ 
+ 
+    </script>
+
+    <body>
+            <label for="username">username</label>
+            <input type="text" id = "username"/>
+
+            <label for="password">password</label>
+            <input type="text" id = "password"/>
+
+            <label for="userId">userId</label>
+            <input type="text" id = "userId"/>
+
+            <label for="deviceId">deviceId</label>
+            <input type="text" id = "deviceId"/>
+             
+ 
+
+ 
+            <button onclick="performRequestAddDevice()">performRequestAddDevice</button>
+ 
+
+            <button onclick="wsConnect()">wsConnect</button>   
+            <button onclick="sendMessage()">sendMessage</button>    
+           
+            <button onclick="setAttr1Value(true)">on</button> 
+            <button onclick="setAttr1Value(false)">off</button> 
+
+           
+
+
+</body>
+
+</html>

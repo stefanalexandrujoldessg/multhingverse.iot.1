@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  frontendc:
+    container_name: frontendc
+    image: myfrontend
+    networks:
+      liciot_network:
+         ipv4_address: "192.168.5.200"
+    ports:
+       - 81:80
+ 
+   
+networks:
+  liciot_network:
+    name: liciot_network
+    external: true

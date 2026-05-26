@@ -1,0 +1,17 @@
+# Environment secrets – never commit
+.env
+
+# Java build artifacts
+backendms/**/target/
+backendms/**/*.jar
+
+# Node
+web/node_modules/
+web/build/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+*.iml

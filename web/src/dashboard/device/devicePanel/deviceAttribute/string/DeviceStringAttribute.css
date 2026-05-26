@@ -1,0 +1,69 @@
+.stringAttributeMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+  border:none;
+  box-shadow: 0 0 0.05rem 0.01rem white;  
+
+
+    border-radius: 0.5rem;
+}
+
+
+.stringAttributeNameDiv::-webkit-scrollbar , .stringAttributeValueDiv::-webkit-scrollbar , .stringAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+}
+
+.stringAttributeNameDiv::-webkit-scrollbar-track,  .stringAttributeValueDiv::-webkit-scrollbar , .stringAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.stringAttributeNameDiv::-webkit-scrollbar-thumb , .stringAttributeValueDiv::-webkit-scrollbar , .stringAttributeDisplayValueDiv::-webkit-scrollbar{
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.stringAttributeNameDiv
+{
+margin:0;
+padding: 0.25rem 0 0.25rem 0;
+overflow: scroll;
+ 
+
+}
+
+.stringAttributeValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+    --stringAttributeValueDiv-padding: 0 ;
+    padding: var(--stringAttributeValueDiv-padding);
+    word-wrap: break-word;
+     
+    
+}
+.stringAttributeDisplayValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+}

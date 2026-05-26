@@ -1,0 +1,104 @@
+.homePageMainDiv{
+    min-height: 200vh;
+    background: url("./../resources/loginPageBack.jpeg")   no-repeat center center fixed;
+    background-clip: border-box;
+    width: 100%;
+    background-size: cover;
+    
+
+    /*overflow: auto;*/
+}
+.homePageBodyDiv{
+    width:100%;
+    margin:0;
+    padding:0;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    
+}
+.homePageButtonsDiv
+{
+     
+
+    margin:5vh 0 0 0 ;
+    padding:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: 1rem;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 0 0.5rem 0.05rem rgba(255,255,255,0.);
+
+}
+ 
+.homePageButton{
+    margin:0 0 1.5rem 0;
+    padding: 0.3rem 0 0.3rem 0;
+
+    color:white;
+    text-shadow:  0 0 10px  #ff0000;
+    width:100%;
+
+    border:none;
+    border-radius: 0.5rem;
+    background: rgba(0,0,0,0);
+    box-shadow: 0 0 0.5rem 0.05rem rgba(255,255,255,0.3);
+        word-wrap:break-word;
+        white-space: normal;
+}
+.homeDivLineBreakDiv{
+    width:80%;
+    max-height: 0;
+    box-shadow: 0 0 0.1rem 0.05rem rgba(255,255,255,0.3);
+    margin: 0 0 1.5rem 0;
+
+
+}
+.homePageButton:last-child{
+    margin: 0;
+}
+.homePageButton:hover{
+   box-shadow: 0 0 0.5rem 0.05rem rgba(255,255,255,0.3);
+   background: rgba(255,255,255,0.2);
+
+}
+.homePageButton:active{
+ box-shadow: none;
+ }
+@media only screen and (min-width:1249px) {
+    .homePageButtonsDiv{
+        width: 25%;
+    }
+}
+@media only screen and (max-width:1248px) {
+    .homePageButtonsDiv{
+        width: 30%;
+    }
+}
+@media only screen and (max-width:1000px) {
+    .homePageButtonsDiv{
+        width: 40%;
+    }
+}
+@media only screen and (max-width:800px) {
+    .homePageButtonsDiv{
+        width: 55%;
+    }
+}
+@media only screen and (max-width:700px) {
+    .homePageButtonsDiv{
+        width: 70%;
+    }
+}
+@media only screen and (max-width:600px) {
+    .homePageButtonsDiv{
+        width: 90%;
+    }
+}

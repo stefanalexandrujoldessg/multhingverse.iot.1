@@ -1,0 +1,119 @@
+.capabilityMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content:center;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+    color: black;
+
+    box-shadow: 0 0 0.05rem 0.01rem white; 
+    border-radius: 0.5rem;
+}
+
+
+.capabilityNameDiv::-webkit-scrollbar , .capabilityParameterDiv::-webkit-scrollbar, .capabilityButtonDiv::-webkit-scrollbar  {
+    max-width: 0;
+    max-height: 0;
+}
+
+.capabilityNameDiv::-webkit-scrollbar , .capabilityParameterDiv::-webkit-scrollbar, .capabilityButtonDiv::-webkit-scrollbar  {
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.capabilityNameDiv::-webkit-scrollbar , .capabilityParameterDiv::-webkit-scrollbar, .capabilityButtonDiv::-webkit-scrollbar  {
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.capabilityNameDiv, .capabilityParameterDiv, .capabilityButtonDiv
+{
+margin:0;
+padding: 0;
+overflow: scroll;
+
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+
+justify-content: flex-start;
+align-items: center;
+align-content: flex-start;
+
+}
+.capabilityButtonDiv{
+    padding:0.5rem;
+}
+.capabilityNameDiv{
+    background: rgba(0,0,0,0.05);
+    border-radius: 0.2rem;
+    margin:0.1rem;
+    padding: 0 0.2rem 0 0.2rem;
+}
+.capabilityParameterDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
+
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+    padding:0.2rem;
+    margin: 0.2rem;
+}
+ 
+ 
+
+.capabilityParameterNameDivLineDiv{
+    background: rgba(0,0,0,0.1);
+    border-radius: inherit;
+    /*border-top-right-radius: 0;
+    border-bottom-right-radius: 0;*/
+    padding: 0 0.2rem 0 0.2rem;
+    margin-right:0.2rem;
+
+    }
+    .capabilityExecuteButton
+    {
+        background: transparent;
+        border-radius: 1rem;
+        border: none;
+        font-size: 1.2rem;
+        background: rgba(0,0,0,0.2);
+        margin:0 ;
+        padding: 0;
+
+        min-height: 1.2rem;
+        min-width: 1.2rem;
+        background: url("./../../../../resources/play.png") no-repeat  center center ;
+        background-clip: border-box;
+        width: 100%;
+        background-size: contain;
+        box-shadow:  none;
+    }
+    .capabilityExecuteButton:hover{
+        box-shadow:  0 0 0.1rem 0.05rem black;
+
+    }

@@ -1,0 +1,91 @@
+.listAttributeMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+  border:none;
+  box-shadow: 0 0 0.05rem 0.01rem white;  
+
+
+    border-radius: 0.5rem;
+}
+
+
+.listAttributeNameDiv::-webkit-scrollbar , .listAttributeValueDiv::-webkit-scrollbar , .listAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+}
+
+.listAttributeNameDiv::-webkit-scrollbar-track,  .listAttributeValueDiv::-webkit-scrollbar , .listAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.listAttributeNameDiv::-webkit-scrollbar-thumb , .listAttributeValueDiv::-webkit-scrollbar , .listAttributeDisplayValueDiv::-webkit-scrollbar{
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.listAttributeNameDiv
+{
+margin:0;
+padding: 0.25rem 0 0.25rem 0;
+overflow: scroll;
+ 
+
+}
+
+.listAttributeValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+    --listAttributeValueDiv-padding: 0 ;
+    padding: var(--listAttributeValueDiv-padding);
+    word-wrap: break-word;
+
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap:wrap;
+
+    justify-content: flex-start;
+    align-items:center;
+    align-content: flex-start;
+     
+    /*because o no wrp and of max width of the child we can say space-aroud or cneter but if no row wratp than only flex-start"*/
+    
+    
+}
+.listAttributeDisplayValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+}
+.listAttributeElementListDiv
+{
+    max-width: 98%;
+    padding: 0.5rem;
+     
+    margin:0.2rem;
+
+    border-radius: 0.5rem;
+
+    box-shadow: 0 0 0.1rem 0.05rem rgba(0,0,0,0.1);
+}

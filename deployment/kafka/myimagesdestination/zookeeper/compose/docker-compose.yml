@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  zookeeper_1c:
+    container_name: zookeeper_1c
+    image: myzookeeper
+    networks:
+      liciot_network:
+         ipv4_address: "192.168.5.12"
+
+    
+     
+    volumes:
+      - ${KAFKACL_PATH}/kafka/myimagesdestination/zookeeper/volumes/zookeeper_1/config/zookeeper.properties:/kafka/config/zookeeper.properties
+      - ${KAFKACL_PATH}/kafka/myimagesdestination/zookeeper/volumes/zookeeper_1/config/myid:/tmp/zookeeper/zookeeper-logs/myid
+      - ${KAFKACL_PATH}/kafka/permanentvolumes/zookeeper/zookeeper_1/zookeeper-logs:/tmp/zookeeper/zookeeper-logs
+
+     
+
+networks:
+  liciot_network:
+    name: liciot_network
+    external: true

@@ -1,0 +1,146 @@
+.rangeAttributeMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+  border:none;
+  box-shadow: 0 0 0.05rem 0.01rem white;  
+
+
+    border-radius: 0.5rem;
+}
+
+
+.rangeAttributeNameDiv::-webkit-scrollbar ,
+ .rangeAttributeValueDiv::-webkit-scrollbar , 
+ .rangeAttributeDisplayValueDiv::-webkit-scrollbar, 
+ .rangeAttributeBaseDiv::-webkit-scrollbar,
+ .rangeLimitDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+}
+
+.rangeAttributeNameDiv::-webkit-scrollbar-track,  
+.rangeAttributeValueDiv::-webkit-scrollbar , 
+.rangeAttributeDisplayValueDiv::-webkit-scrollbar, 
+.rangeAttributeBaseDiv::-webkit-scrollbar-track,
+.rangeLimitDiv::-webkit-scrollbar-track{
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.rangeAttributeNameDiv::-webkit-scrollbar-thumb ,
+ .rangeAttributeValueDiv::-webkit-scrollbar , 
+ .rangeAttributeDisplayValueDiv::-webkit-scrollbar, 
+ .rangeAttributeBaseDiv::-webkit-scrollbar-thumb,
+ .rangeLimitDiv::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.rangeAttributeNameDiv
+{
+margin:0;
+padding: 0;
+overflow: scroll;
+padding: 0.25rem 0 0.25rem 0;
+
+}
+
+.rangeAttributeValueDiv{
+    margin:0;
+  
+    overflow: scroll;
+    --rangeAttributeValueDiv-padding: 0 ;
+    padding: var(--rangeAttributeValueDiv-padding);
+    padding: 0.2rem 0 0.2rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+.rangeAttributeDisplayValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+}
+
+
+.rangeAttributeBaseDiv
+{
+    min-width: 5rem;
+    max-height: 1.5rem;
+    min-height: 1.5rem;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.3rem;
+    background-color: white;
+
+    box-shadow: 0 0 0.2rem 0.01rem rgba(0,0,0,0.3);
+
+/*
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    justify-content: flex-start;
+*/
+display: inline-block;
+white-space: nowrap;
+    word-wrap:none;
+ 
+
+    text-align: center;
+
+    position: relative;
+    overflow: scroll;
+}
+.rangeAttributeProgressDiv
+{
+    position: absolute;
+    top:0px;
+    left:0;
+    --range-progress:0%;
+    width:var(--range-progress);
+    max-height: 1.5rem;
+    min-height: 1.5rem;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.3rem;
+    background: linear-gradient(90deg,rgba(0,0,255,calc(var(--range-progress)/1.5)),rgba(81, 250, 179, 0) 120% ), 
+    linear-gradient(90deg,rgba(255,0,0,80%),rgba(255,0,0,0%) 120% ) ;
+
+    
+}
+
+.rangeLimitDiv{
+    display: inline-block;
+white-space: nowrap;
+    word-wrap:none;
+    text-align: center;
+
+    
+    overflow: scroll;
+
+    padding: 0.2rem;
+    min-width: 2rem;
+}

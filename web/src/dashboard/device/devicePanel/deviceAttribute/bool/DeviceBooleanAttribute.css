@@ -1,0 +1,87 @@
+.booleanAttributeMainDiv
+{
+    min-width: 20%;
+     max-width: 90%;
+     
+    /* /*min-height: 3rem; */
+    padding:0.2rem;
+
+    margin:0.2rem;
+
+
+     
+    display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+
+     
+    background:white;/* linear-gradient(90deg,black 20%, rgba(0,0,0,0) 80%);*/
+  border:none;
+  box-shadow: 0 0 0.05rem 0.01rem white;  
+
+
+    border-radius: 0.5rem;
+}
+
+
+.booleanAttributeNameDiv::-webkit-scrollbar , .booleanAttributeValueDiv::-webkit-scrollbar , .booleanAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+}
+
+.booleanAttributeNameDiv::-webkit-scrollbar-track,  .booleanAttributeValueDiv::-webkit-scrollbar , .booleanAttributeDisplayValueDiv::-webkit-scrollbar{
+    max-width: 0;
+    max-height: 0;
+    border-radius: 10px;
+}
+
+.booleanAttributeNameDiv::-webkit-scrollbar-thumb , .booleanAttributeValueDiv::-webkit-scrollbar , .booleanAttributeDisplayValueDiv::-webkit-scrollbar{
+    border-radius: 10px;
+    max-width: 0;
+    max-height: 0;
+}
+.booleanAttributeNameDiv
+{
+margin:0;
+padding: 0;
+overflow: scroll;
+padding: 0.25rem 0 0.25rem 0;
+
+}
+
+.booleanAttributeValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+    --booleanAttributeValueDiv-padding: 0 ;
+    padding: var(--booleanAttributeValueDiv-padding);
+}
+.booleanAttributeDisplayValueDiv{
+    margin:0;
+    padding: 0;
+    overflow: scroll;
+}
+
+.booleanAttributeValueTrue{
+    max-width:3rem;
+     width:1rem;
+      max-height:1rem;
+      height:3rem;
+      background:radial-gradient(rgba(200,200,0,0.5), rgba(255,255,0,0.5)); 
+      border-radius:2rem;
+      box-shadow: 0 0 0.5rem 0.2rem rgba(150, 150 ,0 ,0.5);;
+
+}
+.booleanAttributeValueFalse{
+    max-width:3rem;
+     width:1rem;
+      max-height:1rem;
+      height:3rem;
+      background:radial-gradient(rgba(100,100,100,1), rgba(50,50,50,1));
+      border-radius:2rem;
+
+      box-shadow: 0 0 0.1rem 0.1rem rgba(255, 0 ,0 ,0.5);;
+}
